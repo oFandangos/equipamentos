@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Emprestimo;
 use Illuminate\Http\Request;
+use Auth;
+use Workflow;
 
 class EmprestimoController extends Controller
 {
@@ -41,7 +42,7 @@ class EmprestimoController extends Controller
      */
     public function create()
     {
-        return view('emprestimo.create');
+        return view('emprestimo.create')->with('emprestimo',new Emprestimo);
     }
 
     /**
@@ -53,12 +54,33 @@ class EmprestimoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'motivo' => 'required',
+            'termo' => 'required',
+            'patrimonio' => 'required|patrimonio',
+            'data_retirada' => 'required|data'
+        ]);
         
-        $requestData = $request->all();
-        
-        Emprestimo::create($requestData);
+        $emprestimo = new Emprestimo;
+        $emprestimo->motivo = $request->motivo;
+        $emprestimo->patrimonio = $request->patrimonio;
+        $emprestimo->data_retirada = $request->data_retirada;
+        $emprestimo->codpes = Auth::user()->codpes;
+        $emprestimo->save();
 
-        return redirect('emprestimo')->with('flash_message', 'Emprestimo added!');
+        $workflow = $emprestimo->workflow_get();
+        dd($emprestimo->getCurrentPlace());
+        /*
+        $workflow = $emprestimo->workflow_get();
+        $workflow->apply($emprestimo, 'solicitado');
+        $workflow = Workflow::get($emprestimo);
+        */
+
+        $emprestimo->save();
+
+        $request->session()->flash('alert-info','Solicitação enviada para Análise: ');
+
+        return redirect('/');
     }
 
     /**

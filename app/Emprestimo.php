@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use ZeroDaHero\LaravelWorkflow\Traits\WorkflowTrait;
 
 class Emprestimo extends Model
 {
+    use WorkflowTrait;
     /**
      * The database table used by the model.
      *
@@ -27,5 +29,20 @@ class Emprestimo extends Model
      */
     protected $fillable = ['codpes', 'data_retirada', 'patrimonio', 'autorizado', 'codpes_autorizador'];
 
+    public function getDataRetiradaAttribute($value) {
+        /* No banco está YYYY-MM-DD, mas vamos retornar DD/MM/YYYY */
+        return implode('/',array_reverse(explode('-',$value)));
+    }
+
+    public function setDataRetiradaAttribute($value) {
+        /* Chega no formato DD/MM/YYYY e vamos salvar como YYYY-MM-DD */
+       $this->attributes['data_retirada'] = implode('-',array_reverse(explode('/',$value)));
+    }
+
+
+    public function getCurrentPlace()
+    {
+        return $this->currentPlace;
+    }
     
 }

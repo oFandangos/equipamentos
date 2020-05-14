@@ -1,18 +1,38 @@
-<div class="form-group {{ $errors->has('codpes') ? 'has-error' : ''}}">
-    <label for="codpes" class="control-label">{{ 'Codpes' }}</label>
-    <input class="form-control" name="codpes" type="text" id="codpes" value="{{ isset($emprestimo->codpes) ? $emprestimo->codpes : ''}}" >
-    {!! $errors->first('codpes', '<p class="help-block">:message</p>') !!}
+@include('emprestimo.replicado',['codpes'=>Auth::user()->codpes])
+
+@section('javascripts_head')
+  <script src="{{asset('/js/script.js')}}"></script>
+@endsection('javascript_head')
+
+
+<div class="form-group}}">
+    <label for="data_retirada" class="control-label"><b>Data que foi ou vai ser retirado o equipamento:</b></label>
+    <input autocomplete="off" class="form-control datepicker" name="data_retirada" type="text" id="data_retirada" value="{{ old('data_retirada',$emprestimo->data_retirada) }}" >
 </div>
-<div class="form-group {{ $errors->has('data_retirada') ? 'has-error' : ''}}">
-    <label for="data_retirada" class="control-label">{{ 'Data Retirada' }}</label>
-    <input class="form-control" name="data_retirada" type="date" id="data_retirada" value="{{ isset($emprestimo->data_retirada) ? $emprestimo->data_retirada : ''}}" >
-    {!! $errors->first('data_retirada', '<p class="help-block">:message</p>') !!}
+
+<div class="form-group">
+    <label for="patrimonio" class="control-label"><b> Número de Patrimônio do Equipamento: </b></label>
+    <input class="form-control patrimonio" name="patrimonio" type="text" id="patrimonio" value="{{ old('patrimonio',$emprestimo->patrimonio)}}" >
+    <small>Exemplo: 008.034111</small>
 </div>
-<div class="form-group {{ $errors->has('patrimonio') ? 'has-error' : ''}}">
-    <label for="patrimonio" class="control-label">{{ 'Patrimonio' }}</label>
-    <input class="form-control" name="patrimonio" type="text" id="patrimonio" value="{{ isset($emprestimo->patrimonio) ? $emprestimo->patrimonio : ''}}" >
-    {!! $errors->first('patrimonio', '<p class="help-block">:message</p>') !!}
+
+
+<div class="form-group">
+    <label for="motivo" class="control-label"><b> Motivo: </b></label>
+    <textarea class="form-control" name="motivo">{{ old('motivo',$emprestimo->motivo)}}</textarea>
 </div>
+
+<div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="termo" name="termo" value="termo">
+    <label class="form-check-label" for="termo">
+    <i>Pelo presente assumo a responsabilidade civil e criminal a utilização do bem acima. 
+    Estou ciente que a Universidade de
+São Paulo, poderá, a seu critério, revogar a presente permissão a qualquer momento, e que devolverei o material
+aqui descrito.</i>
+    </label>
+  </div>
+
+@can('autorizar')
 <div class="form-group {{ $errors->has('autorizado') ? 'has-error' : ''}}">
     <label for="autorizado" class="control-label">{{ 'Autorizado' }}</label>
     <div class="radio">
@@ -28,7 +48,7 @@
     <input class="form-control" name="codpes_autorizador" type="text" id="codpes_autorizador" value="{{ isset($emprestimo->codpes_autorizador) ? $emprestimo->codpes_autorizador : ''}}" >
     {!! $errors->first('codpes_autorizador', '<p class="help-block">:message</p>') !!}
 </div>
-
+@endcan('autorizar')
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">

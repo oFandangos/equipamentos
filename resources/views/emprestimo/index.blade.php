@@ -7,11 +7,8 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Emprestimo</div>
+                    <div class="card-header">Lista dos Empréstimos</div>
                     <div class="card-body">
-                        <a href="{{ url('/emprestimo/create') }}" class="btn btn-success btn-sm" title="Add New Emprestimo">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
 
                         <form method="GET" action="{{ url('/emprestimo') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
@@ -26,27 +23,30 @@
 
                         <br/>
                         <br/>
+                        @inject('pessoa','Uspdev\Replicado\Pessoa')
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Codpes</th><th>Data Retirada</th><th>Patrimonio</th><th>Actions</th>
+                                        <th>Socilitante</th>
+                                        <th>Data Retirada</th>
+                                        <th>Patrimonio
+                                        </th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($emprestimo as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->codpes }}</td><td>{{ $item->data_retirada }}</td><td>{{ $item->patrimonio }}</td>
+                                    
+                                        <td>
+                                            {{ $pessoa::nomeCompleto($item->codpes)['nompesttd'] }}
+                                        </td>
+                                        <td>{{ $item->data_retirada }}</td>
+                                        <td>{{ $item->patrimonio }}</td>
                                         <td>
                                             <a href="{{ url('/emprestimo/' . $item->id) }}" title="View Emprestimo"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/emprestimo/' . $item->id . '/edit') }}" title="Edit Emprestimo"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/emprestimo' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Emprestimo" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
