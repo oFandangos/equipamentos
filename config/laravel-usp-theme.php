@@ -9,11 +9,11 @@ return [
     'menu' => [
         [
             'text' => 'Solicitar Empréstimo de Equipamento',
-            'url'  => '/item1'
+            'url'  => '/emprestimo/create'
         ],
         [
             'text' => 'Equipamentos Emprestados',
-            'url'  => '/item2',
+            'url'  => '/emprestimo',
         ],
     ]
 ];
