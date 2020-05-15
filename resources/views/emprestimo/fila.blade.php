@@ -16,6 +16,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th>Deferimento</th>
                                         <th>status</th>
                                         <th>Solicitante</th>
                                         <th>Data Retirada</th>
@@ -26,6 +27,8 @@
                                 <tbody>
                                 @foreach($emprestimo as $item)
                                     <tr>
+                                        <td><a href="/emprestimo/{{ $item->id }}/edit">Deferimento</a></td>
+
                                         <td>{{ $item->status }}</td>
                                         <td>
                                             {{ $pessoa::nomeCompleto($item->codpes)['nompesttd'] }}
@@ -33,7 +36,7 @@
                                         <td>{{ $item->data_retirada }}</td>
                                         <td>{{ $item->patrimonio }}</td>
                                         <td>{{ $item->motivo }}</td>
-         
+                                        
                                     </tr>
                                 @endforeach
                                 </tbody>

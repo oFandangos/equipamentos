@@ -16,7 +16,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>status</th>
+                                        @can('admin')<th>Ver</th> @endcan
                                         <th>Solicitante</th>
                                         <th>Data Retirada</th>
                                         <th>Patrimônio</th>
@@ -26,7 +26,11 @@
                                 <tbody>
                                 @foreach($emprestimo as $item)
                                     <tr>
-                                        <td>{{ $item->status }}</td>
+                                        @can('admin')
+                                          <td>
+                                            <a href="{{ url('/emprestimo/' . $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-see" aria-hidden="true"></i> Ver</button></a>
+                                          </td>
+                                        @endcan
                                         <td>
                                             {{ $pessoa::nomeCompleto($item->codpes)['nompesttd'] }}
                                         </td>

@@ -35,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
             return true;
         });
         
-        # docentes 
+        # docente
         Gate::define('docente', function ($user) {
             if(ReplicadoUtils::ehdocente($user->codpes)){
                 return true;

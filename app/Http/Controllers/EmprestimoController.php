@@ -19,7 +19,6 @@ class EmprestimoController extends Controller
      */
     public function index(Request $request)
     {
-       
         $emprestimo = Emprestimo::where('status', 'deferido')->get();
 
         return view('emprestimo.index', compact('emprestimo'));
@@ -53,6 +52,7 @@ class EmprestimoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('logado');
         $request->validate([
             'motivo' => 'required',
             'termo' => 'required',
@@ -142,6 +142,7 @@ class EmprestimoController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('admin');
         Emprestimo::destroy($id);
 
         return redirect('emprestimo')->with('flash_message', 'Emprestimo deleted!');
