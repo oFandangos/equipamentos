@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title'=> 'USPdev',
+    'title'=> 'FFLCH',
     'dashboard_url' => '/',
     'logout_method' => 'GET',
     'logout_url' => '/logout',
