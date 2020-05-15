@@ -7,35 +7,36 @@ $workflow_emprestimo =
         'title' => 'Workflow Empréstimo',
     ],
     'marking_store' => [
-        'type' => 'multiple_state',
-        'property' => 'currentPlace', // this is the property on the model
+        'type' => 'single_state',
+        'property' => 'status', // this is the property on the model
     ],
     'supports' => [\App\Emprestimo::class],
     'initial_places' => 'solicitado', 
     'places' => [
         'solicitado' => [
             'metadata' => [
-                'label' => "Equipamento Solicitado",
+                'label' => "Solicitado",
             ],
         ],
         'deferido' => [
             'metadata' => [
-                'label' => "Empréstimo deferido",
+                'label' => "Deferido",
             ],
         ],
         'indeferido' => [
             'metadata' => [
-                'label' => "Empréstimo Indeferido",
+                'label' => "Indeferido",
             ],
         ]
     ],
     'transitions' => [
-        'analise' => [
-            'metadata' => [
-                'label' => "Análise",
-            ],
-            'from' => 'solicitado',
-            'to' => ['deferido','indeferido']
+        'deferir' => [
+            'from' => ['solicitado','indeferido'],
+            'to' => 'deferido',
+        ],
+        'indeferir' => [
+            'from' => ['solicitado','deferido'],
+            'to' => 'indeferido',
         ],
     ],
 ];

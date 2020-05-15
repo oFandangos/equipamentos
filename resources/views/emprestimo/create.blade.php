@@ -5,7 +5,7 @@
         <div class="row">
             
 
-            <div class="col-md-9">
+            <div class="col-sm">
                 <div class="card">
                     <div class="card-header">Nova Solicitação de Empréstimo</div>
                     <div class="card-body">

@@ -15,5 +15,10 @@ return [
             'text' => 'Equipamentos Emprestados',
             'url'  => '/emprestimo',
         ],
+        [
+            'text' => 'Fila de aprovação',
+            'url'  => '/fila',
+            'can'  => 'docente'
+        ],
     ]
 ];

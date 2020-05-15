@@ -21,9 +21,9 @@ class CreateEmprestimosTable extends Migration
             $table->date('data_retirada');
             $table->text('motivo');
             $table->string('patrimonio');
+            $table->string('status');
 
             /* Preenchidos por quem autoriza */
-            $table->string('autorizado')->nullable();
             $table->string('codpes_autorizador')->nullable();
 
         });

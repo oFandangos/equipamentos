@@ -60,4 +60,21 @@ class ReplicadoUtils {
         }
         return false;
     }
+
+    /* Enviar esse método para uspdev/replicado */
+    public static function ehdocente($codpes)
+    {
+        $query = "SELECT codpes FROM LOCALIZAPESSOA
+                    WHERE tipvinext LIKE 'Docente'
+                        AND codundclg = convert(int,:codundclgi)
+                        AND sitatl = 'A'
+                        AND codpes = convert(int,:codpes)";
+        $param = [
+            'codundclgi' => getenv('REPLICADO_CODUND'),
+            'codpes' => $codpes
+        ];
+
+        $result = DBreplicado::fetchAll($query, $param);
+        return !empty($result);
+    }
 }

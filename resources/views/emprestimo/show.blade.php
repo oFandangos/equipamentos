@@ -5,12 +5,13 @@
         <div class="row">
             
 
-            <div class="col-md-9">
+            <div class="col-sm">
                 <div class="card">
-                    <div class="card-header">Emprestimo {{ $emprestimo->id }}</div>
+                    <div class="card-header">Empréstimo {{ $emprestimo->patrimonio }}</div>
                     <div class="card-body">
 
-                        <a href="{{ url('/emprestimo') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        @include('emprestimo.replicado',['codpes'=>$emprestimo->codpes])
+
                         <a href="{{ url('/emprestimo/' . $emprestimo->id . '/edit') }}" title="Edit Emprestimo"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                         <form method="POST" action="{{ url('emprestimo' . '/' . $emprestimo->id) }}" accept-charset="UTF-8" style="display:inline">
@@ -25,9 +26,17 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $emprestimo->id }}</td>
+                                        <th> Data Retirada </th>
+                                        <td> {{ $emprestimo->data_retirada }} </td>
                                     </tr>
-                                    <tr><th> Codpes </th><td> {{ $emprestimo->codpes }} </td></tr><tr><th> Data Retirada </th><td> {{ $emprestimo->data_retirada }} </td></tr><tr><th> Patrimonio </th><td> {{ $emprestimo->patrimonio }} </td></tr>
+                                    <tr>
+                                        <th> Patrimonio </th>
+                                        <td> {{ $emprestimo->patrimonio }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Status</th>
+                                        <td> {{ $emprestimo->status }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

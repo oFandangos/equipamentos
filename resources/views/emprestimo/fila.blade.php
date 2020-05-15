@@ -20,7 +20,7 @@
                                         <th>Solicitante</th>
                                         <th>Data Retirada</th>
                                         <th>Patrimônio</th>
-                                        <th>Autorizado Por</th>
+                                        <th>Motivo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,13 +32,13 @@
                                         </td>
                                         <td>{{ $item->data_retirada }}</td>
                                         <td>{{ $item->patrimonio }}</td>
-                                        <td>{{ $pessoa::nomeCompleto($item->codpes_autorizador)['nompesttd'] }}</td>
+                                        <td>{{ $item->motivo }}</td>
          
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            
+
                         </div>
 
                     </div>
