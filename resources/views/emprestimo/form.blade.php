@@ -24,8 +24,8 @@
 <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="termo" name="termo" value="termo">
     <label class="form-check-label" for="termo">
-    <i>Pelo presente assumo a responsabilidade civil e criminal a utilização do bem acima. 
-    Estou ciente que a Universidade de
+    <i>Pelo presente assumo a responsabilidade civil e criminal a utilização do bem acima.
+    Estou ciente que a Faculdade de Filosofia, Letras e Ciências Humanas da Universidade de
 São Paulo, poderá, a seu critério, revogar a presente permissão a qualquer momento, e que devolverei o material
 aqui descrito.</i>
     </label>
