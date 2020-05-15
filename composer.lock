@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9ff9f3a1d072f4aa54197cf2e591484",
+    "content-hash": "ab2f4955c05f589f20dd79382f131dc6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4153,16 +4153,16 @@
         },
         {
             "name": "uspdev/laravel-usp-validators",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/uspdev/laravel-usp-validators.git",
-                "reference": "1698b0447b65c32f03c515ea9e608cff15a51c74"
+                "reference": "155ba274ef712f19701ff506661121fbe84c9457"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uspdev/laravel-usp-validators/zipball/1698b0447b65c32f03c515ea9e608cff15a51c74",
-                "reference": "1698b0447b65c32f03c515ea9e608cff15a51c74",
+                "url": "https://api.github.com/repos/uspdev/laravel-usp-validators/zipball/155ba274ef712f19701ff506661121fbe84c9457",
+                "reference": "155ba274ef712f19701ff506661121fbe84c9457",
                 "shasum": ""
             },
             "require": {
@@ -4197,7 +4197,7 @@
                 }
             ],
             "description": "Uma biblioteca contendo validações USPdev",
-            "time": "2020-05-08T18:13:00+00:00"
+            "time": "2020-05-14T20:01:34+00:00"
         },
         {
             "name": "uspdev/replicado",
