@@ -10,11 +10,11 @@ return [
         [
             'text' => 'Solicitar Empréstimo de Equipamento',
             'url'  => '/emprestimo/create',
-            'can'  => 'docente'
         ],
         [
             'text' => 'Equipamentos Emprestados',
             'url'  => '/emprestimo',
+             'can'  => 'docente'
         ],
         [
             'text' => 'Fila de aprovação',
