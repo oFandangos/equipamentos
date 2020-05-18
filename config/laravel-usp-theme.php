@@ -9,7 +9,8 @@ return [
     'menu' => [
         [
             'text' => 'Solicitar Empréstimo de Equipamento',
-            'url'  => '/emprestimo/create'
+            'url'  => '/emprestimo/create',
+            'can'  => 'docente'
         ],
         [
             'text' => 'Equipamentos Emprestados',
