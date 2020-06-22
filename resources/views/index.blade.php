@@ -9,6 +9,7 @@
 
   @auth
     @include('emprestimo.replicado',['codpes'=>Auth::user()->codpes])
+    
   @else
     Ainda não logado(a)
   @endauth
