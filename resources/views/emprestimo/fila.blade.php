@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
+    @include('flash')
         <div class="row">
-            
 
             <div class="col-sm">
                 <div class="card">

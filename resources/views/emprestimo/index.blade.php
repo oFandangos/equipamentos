@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('flash')
     <div class="container">
         <div class="row">
             

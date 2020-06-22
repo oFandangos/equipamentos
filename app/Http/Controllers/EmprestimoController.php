@@ -56,13 +56,19 @@ class EmprestimoController extends Controller
         $request->validate([
             'motivo' => 'required',
             'termo' => 'required',
-            'patrimonio' => 'required|patrimonio',
-            'data_retirada' => 'required|data'
+            'patrimonio' => 'multiple_patrimonio',
+            'data_retirada' => 'data'
         ]);
         
+        if(is_null($request->patrimonio)){
+            $patrimonio = ' ';
+        } else {
+            $patrimonio = $request->patrimonio; 
+        }
+
         $emprestimo = new Emprestimo;
         $emprestimo->motivo = $request->motivo;
-        $emprestimo->patrimonio = $request->patrimonio;
+        $emprestimo->patrimonio = $patrimonio;
         $emprestimo->data_retirada = $request->data_retirada;
         $emprestimo->codpes = Auth::user()->codpes;
         $emprestimo->status = 'solicitado';
@@ -112,7 +118,7 @@ class EmprestimoController extends Controller
         $this->authorize('docente');
         $request->validate([
             'analise' => 'required',
-            'patrimonio' => 'required|patrimonio',
+            'patrimonio' => 'required|multiple_patrimonio',
             'data_retirada' => 'required|data'
         ]);
         
