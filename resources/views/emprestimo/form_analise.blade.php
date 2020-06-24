@@ -1,4 +1,4 @@
-@include('emprestimo.replicado',['codpes'=>Auth::user()->codpes])
+@include('emprestimo.replicado',['codpes'=>$emprestimo->codpes])
 
 @section('javascripts_head')
   <script src="{{asset('/js/script.js')}}"></script>
@@ -39,3 +39,11 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="Enviar">
 </div>
+
+@can('admin')
+<form method="POST" action="{{ url('emprestimo' . '/' . $emprestimo->id) }}" accept-charset="UTF-8" style="display:inline">
+    {{ method_field('DELETE') }}
+    {{ csrf_field() }}
+    <button type="submit" class="btn btn-danger btn-sm" title="Delete Emprestimo" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Deletar</button>
+</form>
+@endcan

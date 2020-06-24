@@ -27,7 +27,7 @@
                                 <tbody>
                                 @foreach($emprestimo as $item)
                                     <tr>
-                                        <td><a href="/emprestimo/{{ $item->id }}/edit">Deferimento</a></td>
+                                        <td><a href="/emprestimo/{{ $item->id }}/edit" class="btn btn-info btn-sm">Analisar</a></td>
 
                                         <td>{{ $item->status }}</td>
                                         <td>

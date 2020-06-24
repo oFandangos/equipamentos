@@ -3,7 +3,7 @@
 <ul>
     <li><b>Número USP:</b> {{ $codpes }}</li>
     <li><b>Nome:</b> {{ $pessoa::nomeCompleto($codpes)['nompesttd'] }}</li>
-    <li><b>Email:</b> {{ Auth::user()->email }}</li>
+    <li><b>Email:</b> {{ $pessoa::email($codpes) }}</li>
     <li><b>Endereço:</b> {{ $replicado_utils::enderecoCompleto($codpes) }}</li>
     <li><b>Telefones:</b>
     <ul>
