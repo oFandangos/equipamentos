@@ -15,7 +15,9 @@ $factory->define(Emprestimo::class, function (Faker $faker) {
 	    if($status != "Solicitado"){
 
 	    	$codpes = $faker->servidor;
+
 	    }else{
+	    	
 	    	$codpes = NULL;
 	    };
 
