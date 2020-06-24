@@ -11,18 +11,15 @@ class EmprestimoSeeder extends Seeder
      */
     public function run()
     {
-    
-
-
-         $entrada = [
+        $entrada = [
             'codpes' => '10703080',
             'data_retirada' => '2020-06-28',
             'motivo' => 'Home Office',
             'patrimonio' => '008.00145', 
             'status' => 'Solicitado',
-    ];
-    App\Emprestimo::create($entrada);
+        ];
+        App\Emprestimo::create($entrada);
 
-    factory(App\Emprestimo::class, 10)->create();
+        factory(App\Emprestimo::class, 10)->create();
     }
 }

@@ -12,18 +12,17 @@ $factory->define(Emprestimo::class, function (Faker $faker) {
 
     $status = $status_opcao[array_rand($status_opcao)];
 
-	    if($status != "Solicitado"){
-
-	    	$codpes = $faker->servidor;
-	    }else{
-	    	$codpes = NULL;
-	    };
+	if($status != "Solicitado"){
+		$codpes = $faker->docente;
+	} else {
+		$codpes = NULL;
+	};
 
     return [
 	    'codpes' => $usuarios[array_rand($usuarios)],
 	    'data_retirada' => $faker->date,
 	    'motivo' => $faker->sentence,
-	    'patrimonio' => $faker->bempatrimoniado,
+	    'patrimonio' => $faker->bempatrimoniado_informatica,
 	    'status' => $status,
 	    'codpes_autorizador' => $codpes,	    
         ];
