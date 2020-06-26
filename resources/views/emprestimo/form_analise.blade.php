@@ -22,14 +22,14 @@
 
 @can('docente')
 <div class="form-group form-check">
-    <input class="form-check-input" type="radio" name="analise" id="" value="deferido" @if($emprestimo->analise=='deferido') checked @endif>
+    <input class="form-check-input" type="radio" name="analise" id="" value="deferido" @if($emprestimo->status=='deferido') checked @endif>
   <label class="form-check-label" for="analise_deferido">
     Deferir
   </label>
 </div>
 
 <div class="form-group form-check">
-  <input class="form-check-input" type="radio" name="analise" id="" value="indeferido" @if($emprestimo->analise=='indeferido') checked @endif>
+  <input class="form-check-input" type="radio" name="analise" id="" value="indeferido" @if($emprestimo->status=='indeferido') checked @endif>
   <label class="form-check-label" for="analise_indeferido">
     Indeferir
   </label>
@@ -39,6 +39,8 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="Enviar">
 </div>
+
+</form>
 
 @can('admin')
 <form method="POST" action="{{ url('emprestimo' . '/' . $emprestimo->id) }}" accept-charset="UTF-8" style="display:inline">

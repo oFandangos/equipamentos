@@ -59,11 +59,11 @@ class EmprestimoController extends Controller
             'patrimonio' => 'multiple_patrimonio',
             'data_retirada' => 'data'
         ]);
-        
+
         if(is_null($request->patrimonio)){
             $patrimonio = ' ';
         } else {
-            $patrimonio = $request->patrimonio; 
+            $patrimonio = $request->patrimonio;
         }
 
         $emprestimo = new Emprestimo;
@@ -121,11 +121,12 @@ class EmprestimoController extends Controller
             'patrimonio' => 'required|multiple_patrimonio',
             'data_retirada' => 'required|data'
         ]);
-        
+
         $emprestimo->patrimonio = $request->patrimonio;
         $emprestimo->data_retirada = $request->data_retirada;
         $emprestimo->codpes_autorizador = Auth::user()->codpes;
 
+        /*
         $workflow = $emprestimo->workflow_get();
         if($request->analise == 'indeferido'){
             $workflow->apply($emprestimo, 'indeferir');
@@ -134,8 +135,11 @@ class EmprestimoController extends Controller
             $workflow->apply($emprestimo, 'deferir');
             $request->session()->flash('alert-info','Deferido');
         }
+         */
+
+        $emprestimo->status = $request->analise;
         $emprestimo->save();
-        
+
         return redirect("emprestimo/{$emprestimo->id}");
     }
 
