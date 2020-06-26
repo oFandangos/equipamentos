@@ -11,7 +11,7 @@ $workflow_emprestimo =
         'property' => 'status', // this is the property on the model
     ],
     'supports' => [\App\Emprestimo::class],
-    'initial_places' => 'solicitado', 
+    'initial_places' => 'solicitado',
     'places' => [
         'solicitado' => [
             'metadata' => [
@@ -31,11 +31,11 @@ $workflow_emprestimo =
     ],
     'transitions' => [
         'deferir' => [
-            'from' => ['solicitado','indeferido'],
+            'from' => ['solicitado','indeferido','deferido'],
             'to' => 'deferido',
         ],
         'indeferir' => [
-            'from' => ['solicitado','deferido'],
+            'from' => ['solicitado','deferido','indeferido'],
             'to' => 'indeferido',
         ],
     ],

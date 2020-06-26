@@ -22,14 +22,14 @@
 
 @can('docente')
 <div class="form-group form-check">
-  <input class="form-check-input" type="radio" name="analise" id="" value="deferido">
+    <input class="form-check-input" type="radio" name="analise" id="" value="deferido" @if($emprestimo->analise=='deferido') checked @endif>
   <label class="form-check-label" for="analise_deferido">
     Deferir
   </label>
 </div>
 
 <div class="form-group form-check">
-  <input class="form-check-input" type="radio" name="analise" id="" value="indeferido">
+  <input class="form-check-input" type="radio" name="analise" id="" value="indeferido" @if($emprestimo->analise=='indeferido') checked @endif>
   <label class="form-check-label" for="analise_indeferido">
     Indeferir
   </label>
