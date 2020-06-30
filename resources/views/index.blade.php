@@ -10,6 +10,8 @@
     @include('emprestimo.replicado',['codpes'=>Auth::user()->codpes])
   </div>
 </div>
+
+<br>
 	<div class="card">
 	  	<div class="card-header"><b>Lista de equipamentos emprestados</b></div>
 		<div class="card-body">

@@ -5,7 +5,6 @@
     <div class="container">
         <div class="row">
             
-
             <div class="col-sm">
                 <div class="card">
                     <div class="card-header">Empréstimo {{ $emprestimo->patrimonio }}</div>
