@@ -52,6 +52,16 @@
                                             @endif
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th>Comentário</th>
+                                        <td>
+                                        @if(!empty($emprestimo->codpes_autorizador))
+                                                {{ $emprestimo->comentario}} 
+                                            @else
+                                                Ainda não Avaliado
+                                            @endif
+                                        </td>
+                                    </tr>        
 
                                 </tbody>
                             </table>

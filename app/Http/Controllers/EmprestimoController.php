@@ -125,6 +125,7 @@ class EmprestimoController extends Controller
         $emprestimo->patrimonio = $request->patrimonio;
         $emprestimo->data_retirada = $request->data_retirada;
         $emprestimo->codpes_autorizador = Auth::user()->codpes;
+        $emprestimo->comentario = $request->comentario;
 
         /*
         $workflow = $emprestimo->workflow_get();

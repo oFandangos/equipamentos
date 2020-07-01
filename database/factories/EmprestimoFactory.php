@@ -14,8 +14,10 @@ $factory->define(Emprestimo::class, function (Faker $faker) {
 
 	if($status != "Solicitado"){
 		$codpes = $faker->docente;
+		$comentario =$faker->sentence;
 	} else {
 		$codpes = NULL;
+		$comentario = NULL;
 	};
 
     return [
@@ -24,7 +26,8 @@ $factory->define(Emprestimo::class, function (Faker $faker) {
 	    'motivo' => $faker->sentence,
 	    'patrimonio' => $faker->bempatrimoniado_informatica,
 	    'status' => $status,
-	    'codpes_autorizador' => $codpes,	    
+		'codpes_autorizador' => $codpes,
+		'comentario' => $comentario,	    
         ];
    
 });

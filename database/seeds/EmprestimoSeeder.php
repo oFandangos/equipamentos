@@ -17,6 +17,7 @@ class EmprestimoSeeder extends Seeder
             'motivo' => 'Home Office',
             'patrimonio' => '008.00145', 
             'status' => 'Solicitado',
+            'comentario' => '',
         ];
         App\Emprestimo::create($entrada);
 

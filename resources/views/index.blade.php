@@ -13,7 +13,7 @@
 
 <br>
 	<div class="card">
-	  	<div class="card-header"><b>Lista de equipamentos emprestados</b></div>
+	  	<div class="card-header"><b>Lista de equipamentos solicitados</b></div>
 		<div class="card-body">
 			@inject('pessoa','Uspdev\Replicado\Pessoa')
 			<div class="table-responsive">
@@ -22,8 +22,10 @@
                                     <tr>
                                         <th>Solicitante</th>
                                         <th>Data Retirada</th>
+                                        <th>Status</th>
                                         <th>Patrimônio</th>
                                         <th>Autorizado Por</th>
+                                        <th>Comentário</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,12 +36,22 @@
 	                                            {{ $pessoa::nomeCompleto($item->codpes)['nompesttd'] }}
 	                                        </td>
 	                                        <td>{{ $item->data_retirada }}</td>
+                                          <td>{{$item->status}}
 	                                        <td>{{ $item->patrimonio }}</td>
-                                            <td>
+                                          <td>
                                             @if($item->status=='deferido')
 	                                          {{ $pessoa::nomeCompleto($item->codpes_autorizador)['nompesttd'] }}
+                                            @else
+                                            Ainda não avaliado
                                             @endif
-                                            </td>
+                                          </td>
+                                          <td>
+                                            @if($item->status=='deferido')
+	                                          {{$item->comentario}}
+                                            @else
+                                            Ainda não avaliado
+                                            @endif
+                                          </td>  
 
 	                                    </tr>
                                 @endforeach
