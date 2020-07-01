@@ -27,7 +27,14 @@ class EmprestimoController extends Controller
     public function fila(Request $request)
     {
         $this->authorize('docente');
-        $emprestimo = Emprestimo::where('status','!=' , 'deferido')->get();
+
+        if(isset($request->busca)) {
+            $emprestimo = Emprestimo::where('status','LIKE',"%{$request->busca}%")->paginate(10);
+        } else {
+            $emprestimo = Emprestimo::where('status','!=' , 'deferido')->get();
+        }
+
+        
         return view('emprestimo.fila', compact('emprestimo'));
     }
 

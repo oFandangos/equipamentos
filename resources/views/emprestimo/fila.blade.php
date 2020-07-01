@@ -10,21 +10,25 @@
                     <div class="card-header">Lista dos Empréstimos</div>
                     <div class="card-body">
 
-                    <form>
+                    <form method='GET'>
                     <div class="form-group form-check">
-                            <input class="form-check-input" type="radio" name="filtro" id="" value="solicitado">
+              
+                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'Solicitado'}}">
                             <label class="form-check-label" for="filtro_solicitado">
                                 Solicitado
                             </label>
                         </div>
 
                         <div class="form-group form-check">
-                            <input class="form-check-input" type="radio" name="filtro" id="" value="indeferido">
+                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'Indeferido' }}">
                             <label class="form-check-label" for="filtro_indeferido">
                                 Indeferido
                             </label>
                         </div>
 
+                        <div class="form-group">
+                        <input class="btn btn-primary" type="submit" value="Filtrar">
+                        </div>
                     </form>
                    
                         @inject('pessoa','Uspdev\Replicado\Pessoa')
