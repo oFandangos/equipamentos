@@ -13,14 +13,14 @@
                     <form method='GET'>
                     <div class="form-group form-check">
               
-                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'Solicitado'}}">
+                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'solicitado'}}">
                             <label class="form-check-label" for="filtro_solicitado">
                                 Solicitado
                             </label>
                         </div>
 
                         <div class="form-group form-check">
-                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'Indeferido' }}">
+                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'indeferido' }}">
                             <label class="form-check-label" for="filtro_indeferido">
                                 Indeferido
                             </label>

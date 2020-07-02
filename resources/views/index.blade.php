@@ -39,14 +39,14 @@
                                           <td>{{$item->status}}
 	                                        <td>{{ $item->patrimonio }}</td>
                                           <td>
-                                            @if($item->status=='deferido')
+                                            @if($item->status!='solicitado')
 	                                          {{ $pessoa::nomeCompleto($item->codpes_autorizador)['nompesttd'] }}
                                             @else
                                             Ainda não avaliado
                                             @endif
                                           </td>
                                           <td>
-                                            @if($item->status=='deferido')
+                                            @if($item->status!='solicitado')
 	                                          {{$item->comentario}}
                                             @else
                                             Ainda não avaliado
