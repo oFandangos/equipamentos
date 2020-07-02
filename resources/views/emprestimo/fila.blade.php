@@ -53,7 +53,7 @@
 
                                         <td>{{ $item->status }}</td>
                                         <td>
-                                        @if($item->status=='Indeferido')
+                                        @if($item->status=='indeferido')
                                         {{$item->comentario}}
                                         @else
                                         Ainda não avaliado
