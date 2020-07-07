@@ -34,6 +34,11 @@
     Indeferir
   </label>
 </div>
+
+<div class="form-group">
+    <label for="comentario" class="control-label"><b> Comentário: </b></label>
+    <textarea class="form-control" name="comentario">{{ old('comentario',$emprestimo->comentario)}}</textarea>
+</div>
 @endcan('docente')
 
 <div class="form-group">

@@ -10,6 +10,26 @@
                     <div class="card-header">Lista dos Empréstimos</div>
                     <div class="card-body">
 
+                    <form method='GET'>
+                    <div class="form-group form-check">
+              
+                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'solicitado'}}">
+                            <label class="form-check-label" for="filtro_solicitado">
+                                Solicitado
+                            </label>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'indeferido' }}">
+                            <label class="form-check-label" for="filtro_indeferido">
+                                Indeferido
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                        <input class="btn btn-primary" type="submit" value="Filtrar">
+                        </div>
+                    </form>
                    
                         @inject('pessoa','Uspdev\Replicado\Pessoa')
                         <div class="table-responsive">
@@ -17,11 +37,13 @@
                                 <thead>
                                     <tr>
                                         <th>Deferimento</th>
-                                        <th>status</th>
+                                        <th>Status</th>
+                                        <th>Comentário</th>
                                         <th>Solicitante</th>
                                         <th>Data Retirada</th>
                                         <th>Patrimônio</th>
                                         <th>Motivo</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -30,6 +52,13 @@
                                         <td><a href="/emprestimo/{{ $item->id }}/edit" class="btn btn-info btn-sm">Analisar</a></td>
 
                                         <td>{{ $item->status }}</td>
+                                        <td>
+                                        @if($item->status=='indeferido')
+                                        {{$item->comentario}}
+                                        @else
+                                        Ainda não avaliado
+                                        @endif
+                                        </td>
                                         <td>
                                             {{ $pessoa::nomeCompleto($item->codpes)['nompesttd'] }}
                                         </td>

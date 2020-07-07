@@ -22,6 +22,7 @@
                                         <th>Data Retirada</th>
                                         <th>Patrimônio</th>
                                         <th>Autorizado Por</th>
+                                        <th>Comentário</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +39,7 @@
                                         <td>{{ $item->data_retirada }}</td>
                                         <td>{{ $item->patrimonio }}</td>
                                         <td>{{ $pessoa::nomeCompleto($item->codpes_autorizador)['nompesttd'] }}</td>
-         
+                                        <td>{{$item->comentario}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

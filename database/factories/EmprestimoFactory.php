@@ -8,14 +8,16 @@ use Faker\Generator as Faker;
 $factory->define(Emprestimo::class, function (Faker $faker) {
 
 	$usuarios = [$faker->graduacao, $faker->docente,$faker->servidor];
-    $status_opcao = ['Solicitado', 'Deferido', 'Indeferido'];
+    $status_opcao = ['solicitado', 'deferido', 'indeferido'];
 
     $status = $status_opcao[array_rand($status_opcao)];
 
-	if($status != "Solicitado"){
+	if($status != "solicitado"){
 		$codpes = $faker->docente;
+		$comentario =$faker->sentence;
 	} else {
 		$codpes = NULL;
+		$comentario = NULL;
 	};
 
     return [
@@ -24,7 +26,8 @@ $factory->define(Emprestimo::class, function (Faker $faker) {
 	    'motivo' => $faker->sentence,
 	    'patrimonio' => $faker->bempatrimoniado_informatica,
 	    'status' => $status,
-	    'codpes_autorizador' => $codpes,	    
+		'codpes_autorizador' => $codpes,
+		'comentario' => $comentario,	    
         ];
    
 });

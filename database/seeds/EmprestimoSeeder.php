@@ -16,7 +16,8 @@ class EmprestimoSeeder extends Seeder
             'data_retirada' => '2020-06-28',
             'motivo' => 'Home Office',
             'patrimonio' => '008.00145', 
-            'status' => 'Solicitado',
+            'status' => 'solicitado',
+            'comentario' => '',
         ];
         App\Emprestimo::create($entrada);
 
