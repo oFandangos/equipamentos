@@ -30,7 +30,7 @@ class EmprestimoController extends Controller
 
         if(isset($request->busca)) {
             $emprestimo = Emprestimo::where('status','LIKE',"%{$request->busca}%")->paginate(10);
-        } else {
+        }else{
             $emprestimo = Emprestimo::where('status','!=' , 'deferido')->get();
         }
 
