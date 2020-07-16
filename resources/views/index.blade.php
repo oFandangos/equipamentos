@@ -26,6 +26,7 @@
                                         <th>Patrimônio</th>
                                         <th>Autorizado Por</th>
                                         <th>Comentário</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,7 +52,14 @@
                                             @else
                                             Ainda não avaliado
                                             @endif
-                                          </td>  
+                                          </td>
+                                          <td>
+                                            @if($item->status=='deferido')
+	                                          <a href="{{ url('/emprestimo/' . $item->id . '/devolver') }}" title="Devolver Emprestimo"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Devolver</button></a>
+                                            @else
+                                            Ainda não avaliado
+                                            @endif
+                                          </td>    
 
 	                                    </tr>
                                 @endforeach

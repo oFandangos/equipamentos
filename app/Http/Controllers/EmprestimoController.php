@@ -37,6 +37,29 @@ class EmprestimoController extends Controller
         
         return view('emprestimo.fila', compact('emprestimo'));
     }
+    public function devolver(Emprestimo $id)
+    {
+        if (Auth::guest()) return redirect('/login');
+        $this->authorize('logado');
+        
+        $emprestimo = $id;
+    
+       return view('emprestimo.devolver', compact('emprestimo'));
+    }
+    public function devupdate(Request $request, Emprestimo $emprestimo)
+    {
+    
+        $this->authorize('logado');
+            
+        $emprestimo = Emprestimo::find($request->id);
+        
+        $emprestimo->patrimonio = $request->patrimonio;
+        $emprestimo->data_devolvido = $request->data_devolvido ;
+        
+        $emprestimo->save();
+        return redirect('/');
+    }
+
 
     /**
      * Show the form for creating a new resource.
