@@ -48,14 +48,17 @@ class EmprestimoController extends Controller
     }
     public function devupdate(Request $request, Emprestimo $emprestimo)
     {
-    
+        
+        $request->validate([
+            'data_devolvido' => 'data'
+        ]);
         $this->authorize('logado');
             
         $emprestimo = Emprestimo::find($request->id);
         
         $emprestimo->patrimonio = $request->patrimonio;
         $emprestimo->data_devolvido = $request->data_devolvido ;
-        
+        $emprestimo->status = 'solicitado_devolucao';
         $emprestimo->save();
         return redirect('/');
     }

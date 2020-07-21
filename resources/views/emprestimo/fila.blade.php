@@ -26,6 +26,21 @@
                             </label> 
                         </div>
 
+                        <div class="form-group form-check">
+                            <input class="form-check-input" type="radio" name="busca" id="" value="solicitado_devolucao" @if(Request()->busca == "solicitado_devolucao") checked @endif>
+                            <label class="form-check-label" for="filtro_solicitado_devolucao">
+                                Solicitado para Devolução
+                            </label> 
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input class="form-check-input" type="radio" name="busca" id="" value="indeferido_devolucao" @if(Request()->busca == "indeferido_devolucao") checked @endif>
+                            <label class="form-check-label" for="filtro_indeferido_devolucao">
+                                Indeferido para Devolução
+                            </label> 
+                        </div>
+
+                        
                         <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Filtrar">
                         <br>
