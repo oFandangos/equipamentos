@@ -12,24 +12,45 @@
 
                     <form method='GET'>
                     <div class="form-group form-check">
-              
-                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'solicitado'}}">
+            
+                        <input class="form-check-input" type="radio" name="busca" id="" value="solicitado" @if(Request()->busca == "solicitado") checked @endif>
                             <label class="form-check-label" for="filtro_solicitado">
                                 Solicitado
                             </label>
                         </div>
 
                         <div class="form-group form-check">
-                            <input class="form-check-input" type="radio" name="busca" id="" value="{{ Request()->busca = 'indeferido' }}">
+                            <input class="form-check-input" type="radio" name="busca" id="" value="indeferido" @if(Request()->busca == "indeferido") checked @endif>
                             <label class="form-check-label" for="filtro_indeferido">
                                 Indeferido
-                            </label>
+                            </label> 
                         </div>
 
+                        <div class="form-group form-check">
+                            <input class="form-check-input" type="radio" name="busca" id="" value="solicitado_devolucao" @if(Request()->busca == "solicitado_devolucao") checked @endif>
+                            <label class="form-check-label" for="filtro_solicitado_devolucao">
+                                Solicitado para Devolução
+                            </label> 
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input class="form-check-input" type="radio" name="busca" id="" value="indeferido_devolucao" @if(Request()->busca == "indeferido_devolucao") checked @endif>
+                            <label class="form-check-label" for="filtro_indeferido_devolucao">
+                                Indeferido para Devolução
+                            </label> 
+                        </div>
+
+                        
                         <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Filtrar">
+                        <br>
+                        <br>
+                        </form>
+                        
+                        <form method='GET' action='/fila'>
+                            <input class="btn btn-primary" type="submit" value="Limpar filtro" >
+                        </form>
                         </div>
-                    </form>
                    
                         @inject('pessoa','Uspdev\Replicado\Pessoa')
                         <div class="table-responsive">

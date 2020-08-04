@@ -31,4 +31,12 @@ class Emprestimo extends Model
         /* Chega no formato DD/MM/YYYY e vamos salvar como YYYY-MM-DD */
        $this->attributes['data_retirada'] = implode('-',array_reverse(explode('/',$value)));
     }
+    public function getDataDevolvidoAttribute($value) {
+        /* No banco está YYYY-MM-DD, mas vamos retornar DD/MM/YYYY */
+        return implode('/',array_reverse(explode('-',$value)));
+    }
+    public function setDataDevolvidoAttribute($value) {
+        /* Chega no formato DD/MM/YYYY e vamos salvar como YYYY-MM-DD */
+       $this->attributes['data_devolvido'] = implode('-',array_reverse(explode('/',$value)));
+    }
 }

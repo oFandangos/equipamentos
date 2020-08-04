@@ -22,10 +22,12 @@
                                     <tr>
                                         <th>Solicitante</th>
                                         <th>Data Retirada</th>
+                                        <th>Data Devolvido</th>
                                         <th>Status</th>
                                         <th>Patrimônio</th>
                                         <th>Autorizado Por</th>
                                         <th>Comentário</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,13 +38,21 @@
 	                                            {{ $pessoa::nomeCompleto($item->codpes)['nompesttd'] }}
 	                                        </td>
 	                                        <td>{{ $item->data_retirada }}</td>
-                                          <td>{{$item->status}}
+                                          <td>@if($item->data_devolvido == NULL) Devolução ainda não solicitada 
+                                          @else {{$item->data_devolvido}}
+                                          @endif
+                                          </td>
+                                          <td>@if($item->status=='solicitado_devolucao')
+                                          solicitado para devolução
+                                          @else
+                                          {{$item->status}} 
+                                          @endif</td>
 	                                        <td>{{ $item->patrimonio }}</td>
                                           <td>
-                                            @if($item->status!='solicitado')
-	                                          {{ $pessoa::nomeCompleto($item->codpes_autorizador)['nompesttd'] }}
-                                            @else
+                                            @if($item->status=='solicitado')
                                             Ainda não avaliado
+                                            @else
+                                            {{ $pessoa::nomeCompleto($item->codpes_autorizador)['nompesttd'] }}
                                             @endif
                                           </td>
                                           <td>
@@ -51,7 +61,16 @@
                                             @else
                                             Ainda não avaliado
                                             @endif
-                                          </td>  
+                                          </td>
+                                          <td>
+                                            @if($item->status=='deferido')
+	                                          <a href="{{ url('/emprestimo/' . $item->id . '/devolver') }}" title="Devolver Emprestimo"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Devolver</button></a>
+                                            @elseif($item->status=='solicitado_devolucao')
+                                            Aguarde a nova análise
+                                            @else
+                                            Ainda não avaliado
+                                            @endif
+                                          </td>    
 
 	                                    </tr>
                                 @endforeach
@@ -66,5 +85,6 @@
 
 </div>
     </div>
+    
 
 @endsection('content')

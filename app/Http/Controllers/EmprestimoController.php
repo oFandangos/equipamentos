@@ -30,13 +30,39 @@ class EmprestimoController extends Controller
 
         if(isset($request->busca)) {
             $emprestimo = Emprestimo::where('status','LIKE',"%{$request->busca}%")->paginate(10);
-        } else {
+        }else{
             $emprestimo = Emprestimo::where('status','!=' , 'deferido')->get();
         }
 
         
         return view('emprestimo.fila', compact('emprestimo'));
     }
+    public function devolver(Emprestimo $id)
+    {
+        if (Auth::guest()) return redirect('/login');
+        $this->authorize('logado');
+        
+        $emprestimo = $id;
+    
+       return view('emprestimo.devolver', compact('emprestimo'));
+    }
+    public function devupdate(Request $request, Emprestimo $emprestimo)
+    {
+        
+        $request->validate([
+            'data_devolvido' => 'data'
+        ]);
+        $this->authorize('logado');
+            
+        $emprestimo = Emprestimo::find($request->id);
+        
+        $emprestimo->patrimonio = $request->patrimonio;
+        $emprestimo->data_devolvido = $request->data_devolvido ;
+        $emprestimo->status = 'solicitado_devolucao';
+        $emprestimo->save();
+        return redirect('/');
+    }
+
 
     /**
      * Show the form for creating a new resource.

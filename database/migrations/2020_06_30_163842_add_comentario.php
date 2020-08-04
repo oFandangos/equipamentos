@@ -15,6 +15,9 @@ class AddComentario extends Migration
     {
         Schema::table('emprestimos', function (Blueprint $table) {
             $table->string('comentario')->nullable();
+            $table->date('data_devolvido')->nullable();
+            $table->string('codpes_autorizador2')->nullable();
+            $table->string('comentario2')->nullable();
         });
     }
 
