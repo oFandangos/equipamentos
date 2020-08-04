@@ -11,5 +11,5 @@ Route::get('callback', 'Auth\LoginController@handleProviderCallback');
 Route::resource('emprestimo', 'EmprestimoController');
 Route::get('fila', 'EmprestimoController@fila');
 
-Route::get('emprestimo/{id}/devolver', 'EmprestimoController@devolver');
-Route::patch('devolver/{id}', 'EmprestimoController@devupdate');
+Route::get('emprestimo/{emprestimo}/devolver', 'EmprestimoController@devolver_form');
+Route::patch('devolver/{emprestimo}', 'EmprestimoController@devolver');

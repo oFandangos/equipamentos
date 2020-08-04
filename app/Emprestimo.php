@@ -39,4 +39,15 @@ class Emprestimo extends Model
         /* Chega no formato DD/MM/YYYY e vamos salvar como YYYY-MM-DD */
        $this->attributes['data_devolvido'] = implode('-',array_reverse(explode('/',$value)));
     }
+
+    public static function status(){
+        return [
+            'solicitado'           => 'Solicitado', 
+            'deferido'             => 'Empréstimo Deferido', 
+            'indeferido'           => 'Empréstimo Indeferido',
+            'solicitado_devolucao' => 'Solicitação de Devolução', 
+            'deferido_devolucao'   => 'Devolução Deferida', 
+            'indeferido_devolucao' => 'Devolucão Indeferida'
+        ];
+    }
 }

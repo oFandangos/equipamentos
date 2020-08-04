@@ -19,11 +19,10 @@
                                 <input autocomplete="off" class="form-control datepicker" name="data_devolvido" type="text" id="data_devolvido" value="{{ old('data_devolvido',$emprestimo->data_devolvido) }}" >
                             </div>
 
-                            <div class="form-group">
-                                <label for="patrimonio" class="control-label"><b> Número de Patrimônio do Equipamento emprestado: </b></label>
-                                <input class="form-control patrimonio" name="patrimonio" type="text" id="patrimonio" value="{{ old('patrimonio',$emprestimo->patrimonio)}}" readonly>
-                                
-                            </div>
+                            <b> Número(s) de patrimônio(s) do(s) equipamento(s) emprestado(s): </b>
+                                {{$emprestimo->patrimonio}}
+
+                                <br><br>
 
                             <div class="form-group">
                                 <input class="btn btn-primary" type="submit" value="Enviar">

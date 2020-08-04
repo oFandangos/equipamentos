@@ -29,7 +29,7 @@ class EmprestimoController extends Controller
         $this->authorize('docente');
 
         if(isset($request->busca)) {
-            $emprestimo = Emprestimo::where('status','LIKE',"%{$request->busca}%")->paginate(10);
+            $emprestimo = Emprestimo::where('status','=',"{$request->busca}")->paginate(10);
         }else{
             $emprestimo = Emprestimo::where('status','!=' , 'deferido')->get();
         }
@@ -37,29 +37,25 @@ class EmprestimoController extends Controller
         
         return view('emprestimo.fila', compact('emprestimo'));
     }
-    public function devolver(Emprestimo $id)
+    public function devolver_form(Emprestimo $emprestimo)
     {
         if (Auth::guest()) return redirect('/login');
         $this->authorize('logado');
-        
-        $emprestimo = $id;
     
        return view('emprestimo.devolver', compact('emprestimo'));
     }
-    public function devupdate(Request $request, Emprestimo $emprestimo)
+
+    public function devolver(Request $request, Emprestimo $emprestimo)
     {
-        
         $request->validate([
             'data_devolvido' => 'data'
         ]);
         $this->authorize('logado');
-            
-        $emprestimo = Emprestimo::find($request->id);
+    
+        $emprestimo->data_devolvido = $request->data_devolvido;
         
-        $emprestimo->patrimonio = $request->patrimonio;
-        $emprestimo->data_devolvido = $request->data_devolvido ;
         $emprestimo->status = 'solicitado_devolucao';
-        $emprestimo->save();
+        $emprestimo->update();
         return redirect('/');
     }
 
@@ -159,17 +155,6 @@ class EmprestimoController extends Controller
         $emprestimo->data_retirada = $request->data_retirada;
         $emprestimo->codpes_autorizador = Auth::user()->codpes;
         $emprestimo->comentario = $request->comentario;
-
-        /*
-        $workflow = $emprestimo->workflow_get();
-        if($request->analise == 'indeferido'){
-            $workflow->apply($emprestimo, 'indeferir');
-            $request->session()->flash('alert-info','Indeferido');
-        } else {
-            $workflow->apply($emprestimo, 'deferir');
-            $request->session()->flash('alert-info','Deferido');
-        }
-         */
 
         $emprestimo->status = $request->analise;
         $emprestimo->save();

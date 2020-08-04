@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddComentario extends Migration
+class AddColumnsDevolucao extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddComentario extends Migration
     public function up()
     {
         Schema::table('emprestimos', function (Blueprint $table) {
-            $table->string('comentario')->nullable();
+            $table->date('data_devolvido')->nullable()->default('0000-00-00');
+            $table->string('codpes_autorizador_devolucao')->nullable();
+            $table->string('comentario_devolucao')->nullable();
         });
     }
 
