@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Uspdev\Replicado\Pessoa;
 use Auth;
-use App\Emprestimo;
+use App\Models\Emprestimo;
 
 class IndexController extends Controller
 {

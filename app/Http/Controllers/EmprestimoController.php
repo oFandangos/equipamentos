@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 
-use App\Emprestimo;
+use App\Models\Emprestimo;
 use Illuminate\Http\Request;
 use Auth;
 use Workflow;
@@ -34,14 +34,14 @@ class EmprestimoController extends Controller
             $emprestimo = Emprestimo::where('status','!=' , 'deferido')->get();
         }
 
-        
+
         return view('emprestimo.fila', compact('emprestimo'));
     }
     public function devolver_form(Emprestimo $emprestimo)
     {
         if (Auth::guest()) return redirect('/login');
         $this->authorize('logado');
-    
+
        return view('emprestimo.devolver', compact('emprestimo'));
     }
 
@@ -51,9 +51,9 @@ class EmprestimoController extends Controller
             'data_devolvido' => 'data'
         ]);
         $this->authorize('logado');
-    
+
         $emprestimo->data_devolvido = $request->data_devolvido;
-        
+
         $emprestimo->status = 'solicitado_devolucao';
         $emprestimo->update();
         return redirect('/');
