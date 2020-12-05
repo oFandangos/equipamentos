@@ -14,7 +14,7 @@ Route::get('logout', [LogoutController::class, 'logout']);
 Route::get('callback', [LoginController::class, 'handleProviderCallback']);
 
 
-Route::resource('emprestimo', [EmprestimoController::class]);
+Route::resource('emprestimo', EmprestimoController::class);
 Route::get('fila', [EmprestimoController::class, 'fila']);
 
 Route::get('emprestimo/{emprestimo}/devolver', [EmprestimoController::class, 'devolver_form']);
