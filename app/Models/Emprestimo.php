@@ -8,8 +8,7 @@ use ZeroDaHero\LaravelWorkflow\Traits\WorkflowTrait;
 
 class Emprestimo extends Model
 {
-    use HasFactory;
-    use WorkflowTrait;
+    use HasFactory, WorkflowTrait;
     /**
      * The database table used by the model.
      *

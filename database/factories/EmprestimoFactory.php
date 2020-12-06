@@ -22,7 +22,7 @@ class EmprestimoFactory extends Factory
      */
     public function definition()
     {
-        $usuarios = [$faker->graduacao, $faker->docente,$faker->servidor];
+        $usuarios = [$this->faker->graduacao, $this->faker->docente,$this->faker->servidor];
 
         $status_opcao = array_keys(Emprestimo::status());
 
@@ -37,45 +37,45 @@ class EmprestimoFactory extends Factory
 
         switch ($status) {
             case "deferido":
-                $codpes = $faker->docente;
-                $comentario =$faker->sentence;
+                $codpes = $this->faker->docente;
+                $comentario =$this->faker->sentence;
             break;
 
             case "indeferido":
-                $codpes = $faker->docente;
-                $comentario =$faker->sentence;
+                $codpes = $this->faker->docente;
+                $comentario =$this->faker->sentence;
             break;
 
             case "solicitado_devolucao":
-                $codpes = $faker->docente;
-                $comentario =$faker->sentence;
-                $data_devolvido = $faker->date;
+                $codpes = $this->faker->docente;
+                $comentario =$this->faker->sentence;
+                $data_devolvido = $this->faker->date;
             break;
 
             case "deferido_devolucao":
-                $codpes = $faker->docente;
-                $comentario =$faker->sentence;
-                $codpes_autorizador_devolucao = $faker->docente;
-                $comentario_devolucao =$faker->sentence;
-                $data_devolvido = $faker->date;
+                $codpes = $this->faker->docente;
+                $comentario =$this->faker->sentence;
+                $codpes_autorizador_devolucao = $this->faker->docente;
+                $comentario_devolucao =$this->faker->sentence;
+                $data_devolvido = $this->faker->date;
             break;
 
             case "indeferido_devolucao":
-                $codpes = $faker->docente;
-                $comentario =$faker->sentence;
+                $codpes = $this->faker->docente;
+                $comentario =$this->faker->sentence;
 
-                $codpes_autorizador_devolucao = $faker->docente;
-                $comentario_devolucao =$faker->sentence;
-                $data_devolvido = $faker->date;
+                $codpes_autorizador_devolucao = $this->faker->docente;
+                $comentario_devolucao =$this->faker->sentence;
+                $data_devolvido = $this->faker->date;
             break;
 
         }
 
         return [
             'codpes' => $usuarios[array_rand($usuarios)],
-            'data_retirada' => $faker->date,
-            'motivo' => $faker->sentence,
-            'patrimonio' => $faker->bempatrimoniado_informatica,
+            'data_retirada' => $this->faker->date,
+            'motivo' => $this->faker->sentence,
+            'patrimonio' => $this->faker->bempatrimoniado_informatica,
             'status' => $status,
             'codpes_autorizador' => $codpes,
             'comentario' => $comentario,

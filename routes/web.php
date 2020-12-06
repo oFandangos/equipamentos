@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controller\EmprestimoController;
-use App\Http\Controller\IndexController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controller\UserController;
+use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\UserController;
 
 Route::get('/users', [UserController::class, 'index']);
 
