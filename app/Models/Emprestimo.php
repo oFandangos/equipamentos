@@ -1,13 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use ZeroDaHero\LaravelWorkflow\Traits\WorkflowTrait;
 
 class Emprestimo extends Model
 {
-    use WorkflowTrait;
+    use HasFactory, WorkflowTrait;
     /**
      * The database table used by the model.
      *
@@ -42,11 +43,11 @@ class Emprestimo extends Model
 
     public static function status(){
         return [
-            'solicitado'           => 'Solicitado', 
-            'deferido'             => 'Empréstimo Deferido', 
+            'solicitado'           => 'Solicitado',
+            'deferido'             => 'Empréstimo Deferido',
             'indeferido'           => 'Empréstimo Indeferido',
-            'solicitado_devolucao' => 'Solicitação de Devolução', 
-            'deferido_devolucao'   => 'Devolução Deferida', 
+            'solicitado_devolucao' => 'Solicitação de Devolução',
+            'deferido_devolucao'   => 'Devolução Deferida',
             'indeferido_devolucao' => 'Devolucão Indeferida'
         ];
     }

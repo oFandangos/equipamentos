@@ -1,15 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 
-Route::get('/', 'IndexController@index');
-Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
-Route::get('logout', 'Auth\LogoutController@logout');
-Route::get('callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('/users', [UserController::class, 'index']);
+
+Route::get('/', [IndexController::class, 'index']);
+Route::get('login', [LoginController::class, 'redirectToProvider'])->name('login');
+Route::get('logout', [LogoutController::class, 'logout']);
+Route::get('callback', [LoginController::class, 'handleProviderCallback']);
 
 
-Route::resource('emprestimo', 'EmprestimoController');
-Route::get('fila', 'EmprestimoController@fila');
+Route::resource('emprestimo', EmprestimoController::class);
+Route::get('fila', [EmprestimoController::class, 'fila']);
 
-Route::get('emprestimo/{emprestimo}/devolver', 'EmprestimoController@devolver_form');
-Route::patch('devolver/{emprestimo}', 'EmprestimoController@devolver');
+Route::get('emprestimo/{emprestimo}/devolver', [EmprestimoController::class, 'devolver_form']);
+Route::patch('devolver/{emprestimo}', [EmprestimoController::class, 'devolver']);

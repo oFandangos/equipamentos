@@ -4,14 +4,14 @@
 @include('flash')
     <div class="container">
         <div class="row">
-            
+
 
             <div class="col-sm">
                 <div class="card">
                     <div class="card-header">Lista dos Empréstimos</div>
                     <div class="card-body">
 
-                   
+
                         @inject('pessoa','Uspdev\Replicado\Pessoa')
                         <div class="table-responsive">
                             <table class="table">
@@ -34,17 +34,17 @@
                                           </td>
                                         @endcan
                                         <td>
-                                            {{ $pessoa::nomeCompleto($item->codpes)['nompesttd'] }}
+                                            {{ $pessoa::nomeCompleto($item->codpes) }}
                                         </td>
                                         <td>{{ $item->data_retirada }}</td>
                                         <td>{{ $item->patrimonio }}</td>
-                                        <td>{{ $pessoa::nomeCompleto($item->codpes_autorizador)['nompesttd'] }}</td>
+                                        <td>{{ $pessoa::nomeCompleto($item->codpes_autorizador) }}</td>
                                         <td>{{$item->comentario}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            
+
                         </div>
 
                     </div>
