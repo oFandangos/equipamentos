@@ -5,7 +5,6 @@ use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\UserController;
 
 Route::get('/users', [UserController::class, 'index']);
 

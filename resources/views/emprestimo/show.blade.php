@@ -4,7 +4,7 @@
     @include('flash')
     <div class="container">
         <div class="row">
-            
+
             <div class="col-sm">
                 <div class="card">
                     <div class="card-header">Empréstimo {{ $emprestimo->patrimonio }}</div>
@@ -44,9 +44,9 @@
                                     <tr>
                                         @inject('pessoa','Uspdev\Replicado\Pessoa')
                                         <th> Avaliado por</th>
-                                        <td> 
+                                        <td>
                                             @if(!empty($emprestimo->codpes_autorizador))
-                                                {{ $pessoa::nomeCompleto($emprestimo->codpes_autorizador)['nompesttd'] }} 
+                                                {{ $pessoa::nomeCompleto($emprestimo->codpes_autorizador) }}
                                             @else
                                                 Ainda não Avaliado
                                             @endif
@@ -56,12 +56,12 @@
                                         <th>Comentário</th>
                                         <td>
                                         @if(!empty($emprestimo->codpes_autorizador))
-                                                {{ $emprestimo->comentario}} 
+                                                {{ $emprestimo->comentario}}
                                             @else
                                                 Ainda não Avaliado
                                             @endif
                                         </td>
-                                    </tr>        
+                                    </tr>
 
                                 </tbody>
                             </table>

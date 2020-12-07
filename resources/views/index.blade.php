@@ -12,11 +12,11 @@
 </div>
 
 <br>
-	<div class="card">
-	  	<div class="card-header"><b>Lista de equipamentos solicitados</b></div>
-		<div class="card-body">
-			@inject('pessoa','Uspdev\Replicado\Pessoa')
-			<div class="table-responsive">
+  <div class="card">
+      <div class="card-header"><b>Lista de equipamentos solicitados</b></div>
+    <div class="card-body">
+      @inject('pessoa','Uspdev\Replicado\Pessoa')
+      <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -31,53 +31,53 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-									@foreach($emprestimos as $item)
+                  @foreach($emprestimos as $item)
 
-	                                    <tr>
-	                                        <td>
-	                                            {{ $pessoa::nomeCompleto($item->codpes)['nompesttd'] }}
-	                                        </td>
-	                                        <td>{{ $item->data_retirada }}</td>
-                                          <td>@if($item->data_devolvido == NULL) Devolução ainda não solicitada 
+                                      <tr>
+                                          <td>
+                                              {{ $pessoa::nomeCompleto($item->codpes) }}
+                                          </td>
+                                          <td>{{ $item->data_retirada }}</td>
+                                          <td>@if($item->data_devolvido == NULL) Devolução ainda não solicitada
                                           @else {{$item->data_devolvido}}
                                           @endif
                                           </td>
                                           <td>@if($item->status=='solicitado_devolucao')
                                           solicitado para devolução
                                           @else
-                                          {{$item->status}} 
+                                          {{$item->status}}
                                           @endif</td>
-	                                        <td>{{ $item->patrimonio }}</td>
+                                          <td>{{ $item->patrimonio }}</td>
                                           <td>
                                             @if($item->status=='solicitado')
                                             Ainda não avaliado
                                             @else
-                                            {{ $pessoa::nomeCompleto($item->codpes_autorizador)['nompesttd'] }}
+                                            {{ $pessoa::nomeCompleto($item->codpes_autorizador) }}
                                             @endif
                                           </td>
                                           <td>
                                             @if($item->status!='solicitado')
-	                                          {{$item->comentario}}
+                                            {{$item->comentario}}
                                             @else
                                             Ainda não avaliado
                                             @endif
                                           </td>
                                           <td>
                                             @if($item->status=='deferido')
-	                                          <a href="{{ url('/emprestimo/' . $item->id . '/devolver') }}" title="Devolver Emprestimo"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Devolver</button></a>
+                                            <a href="{{ url('/emprestimo/' . $item->id . '/devolver') }}" title="Devolver Emprestimo"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Devolver</button></a>
                                             @elseif($item->status=='solicitado_devolucao')
                                             Aguarde a nova análise
                                             @else
                                             Ainda não avaliado
                                             @endif
-                                          </td>    
+                                          </td>
 
-	                                    </tr>
+                                      </tr>
                                 @endforeach
                                 </tbody>
                             </table>
             </div>
-		</div>
+    </div>
 
   @else
     Ainda não logado(a)
@@ -85,6 +85,6 @@
 
 </div>
     </div>
-    
+
 
 @endsection('content')

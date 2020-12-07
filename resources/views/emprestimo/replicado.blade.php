@@ -2,7 +2,7 @@
 @inject('replicado_utils','App\Utils\ReplicadoUtils')
 <ul>
     <li><b>Número USP:</b> {{ $codpes }}</li>
-    <li><b>Nome:</b> {{ $pessoa::nomeCompleto($codpes)['nompesttd'] }}</li>
+    <li><b>Nome:</b> {{ $pessoa::nomeCompleto($codpes) }}</li>
     <li><b>Email:</b> {{ $pessoa::email($codpes) }}</li>
     <li><b>Endereço:</b> {{ $replicado_utils::enderecoCompleto($codpes) }}</li>
     <li><b>Telefones:</b>

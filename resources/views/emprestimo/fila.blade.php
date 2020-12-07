@@ -61,7 +61,7 @@
                                         @endif
                                         </td>
                                         <td>
-                                            {{ $pessoa::nomeCompleto($item->codpes)['nompesttd'] }}
+                                            {{ $pessoa::nomeCompleto($item->codpes) }}
                                         </td>
                                         <td>{{ $item->data_retirada }}</td>
                                         <td>{{ $item->patrimonio }}</td>

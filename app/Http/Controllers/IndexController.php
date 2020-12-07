@@ -12,7 +12,7 @@ class IndexController extends Controller
     public function index(){
         if(Auth::user()) {
             $emprestimos =  Emprestimo::where('codpes',Auth::user()->codpes)->get();
-        } else {
+    } else {
             $emprestimos = [];
         }
         return view('index')->with('emprestimos',$emprestimos);
