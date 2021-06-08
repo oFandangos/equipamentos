@@ -12,9 +12,14 @@
 
                     <form method='GET'>
 
+                        <div class="row">
+                                <input type="text" class="form-control" name="busca" value="{{Request()->busca}}" placeholder="Busca por número de patrimônio">  
+                        </div>
+                        <br>
+            
                         @foreach(App\Models\Emprestimo::status() as $key=>$value)
                             <div class="form-group form-check">
-                                <input class="form-check-input" type="radio" name="busca" value="{{$key}}" @if(Request()->busca == $key) checked @endif>
+                                <input class="form-check-input" type="radio" name="buscastatus" value="{{$key}}" @if(Request()->buscastatus == $key) checked @endif>
                                 <label class="form-check-label">
                                 {{$value}}
                                 </label>
@@ -22,15 +27,17 @@
                         @endforeach
 
                         <div class="form-group">
-                        <input class="btn btn-primary" type="submit" value="Filtrar">
-                        <br>
-                        <br>
-                        </form>
+                            <span class="input-group-btn">
 
-                        <form method='GET' action='/fila'>
-                            <input class="btn btn-primary" type="submit" value="Limpar filtro" >
-                        </form>
+                                <button type="submit" class="btn btn-success"> Filtrar </button>
+
+                                <form method='GET' action='/fila'>
+                                    <input class="btn btn-primary" type="submit" value="Limpar filtro" >
+                                </form>
+
+                            </span>
                         </div>
+                    </form>
 
                         @inject('pessoa','Uspdev\Replicado\Pessoa')
                         <div class="table-responsive">
@@ -48,11 +55,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                 @foreach($emprestimo as $item)
                                     <tr>
                                         <td><a href="/emprestimo/{{ $item->id }}/edit" class="btn btn-info btn-sm">Analisar</a></td>
 
-                                        <td>{{ $item->status }}</td>
+                                        <td>{{ $item->Status()[$item->status] }} </td>
                                         <td>
                                         @if($item->status=='indeferido')
                                         {{$item->comentario}}
@@ -66,7 +74,6 @@
                                         <td>{{ $item->data_retirada }}</td>
                                         <td>{{ $item->patrimonio }}</td>
                                         <td>{{ $item->motivo }}</td>
-
                                     </tr>
                                 @endforeach
                                 </tbody>
