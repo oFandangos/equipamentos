@@ -39,7 +39,7 @@
                                     </tr>
                                     <tr>
                                         <th> Status</th>
-                                        <td> {{ $emprestimo->status }} </td>
+                                        <td> {{ $emprestimo->Status()[$emprestimo->status] }} </td>
                                     </tr>
                                     <tr>
                                         @inject('pessoa','Uspdev\Replicado\Pessoa')

@@ -20,7 +20,7 @@ class EmprestimoController extends Controller
     public function index(Request $request)
     {
         $this->authorize('docente');
-        $emprestimo = Emprestimo::where('status', 'deferido')->get();
+        $emprestimo = Emprestimo::where('status', 'deferido')->paginate(10);
         return view('emprestimo.index', compact('emprestimo'));
     }
 

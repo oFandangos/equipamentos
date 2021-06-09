@@ -12,32 +12,38 @@
 
                     <form method='GET'>
 
+                            <div class=" col-sm input-group">
+
+
+                                                <!--
                         <div class="row">
                                 <input type="text" class="form-control" name="busca" value="{{Request()->busca}}" placeholder="Busca por número de patrimônio">  
                         </div>
                         <br>
-            
-                        @foreach(App\Models\Emprestimo::status() as $key=>$value)
-                            <div class="form-group form-check">
-                                <input class="form-check-input" type="radio" name="buscastatus" value="{{$key}}" @if(Request()->buscastatus == $key) checked @endif>
-                                <label class="form-check-label">
-                                {{$value}}
-                                </label>
-                            </div>
-                        @endforeach
+                        -->
 
-                        <div class="form-group">
-                            <span class="input-group-btn">
 
-                                <button type="submit" class="btn btn-success"> Filtrar </button>
+                                <select name="buscastatus" class="form-control">
+                                    <option value="" selected="">- Status do Emprestimo -</option>
+                                    @foreach(App\Models\Emprestimo::status() as $key=>$value)
 
-                                <form method='GET' action='/fila'>
-                                    <input class="btn btn-primary" type="submit" value="Limpar filtro" >
-                                </form>
+                                    <option value="{{$key}}" name="buscastatus" 
+                                    @if($key == Request()->buscastatus) selected @endif
+                                    >{{$value}}</option>
 
-                            </span>
+                                    @endforeach
+                                </select>
+
+                                <span class="input-group-btn">
+
+                                    <button type="submit" class="btn btn-success"> Filtrar </button>
+
+                                </span>
+                            </div>    
                         </div>
                     </form>
+
+                    {{ $emprestimo->appends(request()->query())->links() }}
 
                         @inject('pessoa','Uspdev\Replicado\Pessoa')
                         <div class="table-responsive">
