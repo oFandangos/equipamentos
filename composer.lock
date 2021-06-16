@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03bc6830504ea042c4bf2e48fccea769",
+    "content-hash": "092c598950314bc7b87e6ae927ab18c5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5110,16 +5110,16 @@
         },
         {
             "name": "uspdev/laravel-usp-theme",
-            "version": "1.0.21",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/uspdev/laravel-usp-theme.git",
-                "reference": "50e4e50e804be01779458629763ad3cdcbffeec9"
+                "reference": "df40ef29283f8c1f2eab4f44e7dde56cdda77132"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uspdev/laravel-usp-theme/zipball/50e4e50e804be01779458629763ad3cdcbffeec9",
-                "reference": "50e4e50e804be01779458629763ad3cdcbffeec9",
+                "url": "https://api.github.com/repos/uspdev/laravel-usp-theme/zipball/df40ef29283f8c1f2eab4f44e7dde56cdda77132",
+                "reference": "df40ef29283f8c1f2eab4f44e7dde56cdda77132",
                 "shasum": ""
             },
             "type": "library",
@@ -5127,7 +5127,10 @@
                 "laravel": {
                     "providers": [
                         "Uspdev\\UspTheme\\ServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "UspTheme": "Uspdev\\UspTheme\\Facades\\UspTheme"
+                    }
                 }
             },
             "autoload": {
@@ -5148,9 +5151,9 @@
             "description": "usp theme for laravel",
             "support": {
                 "issues": "https://github.com/uspdev/laravel-usp-theme/issues",
-                "source": "https://github.com/uspdev/laravel-usp-theme/tree/1.0.21"
+                "source": "https://github.com/uspdev/laravel-usp-theme/tree/2.1.0"
             },
-            "time": "2020-10-26T14:33:59+00:00"
+            "time": "2021-06-16T15:14:11+00:00"
         },
         {
             "name": "uspdev/laravel-usp-validators",

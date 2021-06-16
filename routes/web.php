@@ -10,7 +10,7 @@ Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('login', [LoginController::class, 'redirectToProvider'])->name('login');
-Route::get('logout', [LogoutController::class, 'logout']);
+Route::post('logout', [LogoutController::class, 'logout']);
 Route::get('callback', [LoginController::class, 'handleProviderCallback']);
 
 
