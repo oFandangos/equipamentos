@@ -28,13 +28,6 @@ class EmprestimoController extends Controller
     {
         $this->authorize('docente');
 
-        /**if ($request->buscastatus != null && $request->busca != null){
-
-            $estagios = Emprestimo::where('patrimonio','LIKE',"%{$request->busca}%")
-            -> where('status', $request->buscastatus)->paginate(10);
-
-        }*/
-
         if (isset($request->busca)) {
             $emprestimo = Emprestimo::where('patrimonio','LIKE',"{$request->busca}")->paginate(10);
 
@@ -160,7 +153,7 @@ class EmprestimoController extends Controller
         $this->authorize('docente');
         $request->validate([
             'analise' => 'required',
-            'patrimonio' => 'required|multiple_patrimonio',
+            'patrimonio' => 'required', # multiple_patrimonio
             'data_retirada' => 'required|data'
         ]);
 

@@ -17,7 +17,7 @@
     <div class="card-body">
       @inject('pessoa','Uspdev\Replicado\Pessoa')
       <div class="table-responsive">
-        {{ $emprestimo->appends(request()->query())->links() }}
+        {{ $emprestimos->appends(request()->query())->links() }}
           <table class="table">
             <thead>
               <tr>
