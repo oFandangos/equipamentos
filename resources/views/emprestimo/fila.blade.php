@@ -12,25 +12,38 @@
 
                     <form method='GET'>
 
-                        @foreach(App\Models\Emprestimo::status() as $key=>$value)
-                            <div class="form-group form-check">
-                                <input class="form-check-input" type="radio" name="busca" value="{{$key}}" @if(Request()->busca == $key) checked @endif>
-                                <label class="form-check-label">
-                                {{$value}}
-                                </label>
-                            </div>
-                        @endforeach
+                            <div class=" col-sm input-group">
 
-                        <div class="form-group">
-                        <input class="btn btn-primary" type="submit" value="Filtrar">
-                        <br>
-                        <br>
-                        </form>
 
-                        <form method='GET' action='/fila'>
-                            <input class="btn btn-primary" type="submit" value="Limpar filtro" >
-                        </form>
+                                                <!--
+                        <div class="row">
+                                <input type="text" class="form-control" name="busca" value="{{Request()->busca}}" placeholder="Busca por número de patrimônio">  
                         </div>
+                        <br>
+                        -->
+
+
+                                <select name="buscastatus" class="form-control">
+                                    <option value="" selected="">- Status do Emprestimo -</option>
+                                    @foreach(App\Models\Emprestimo::status() as $key=>$value)
+
+                                    <option value="{{$key}}" name="buscastatus" 
+                                    @if($key == Request()->buscastatus) selected @endif
+                                    >{{$value}}</option>
+
+                                    @endforeach
+                                </select>
+
+                                <span class="input-group-btn">
+
+                                    <button type="submit" class="btn btn-success"> Filtrar </button>
+
+                                </span>
+                            </div>    
+                        </div>
+                    </form>
+
+                    {{ $emprestimo->appends(request()->query())->links() }}
 
                         @inject('pessoa','Uspdev\Replicado\Pessoa')
                         <div class="table-responsive">
@@ -48,11 +61,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                 @foreach($emprestimo as $item)
                                     <tr>
                                         <td><a href="/emprestimo/{{ $item->id }}/edit" class="btn btn-info btn-sm">Analisar</a></td>
 
-                                        <td>{{ $item->status }}</td>
+                                        <td>{{ $item->Status()[$item->status] }} </td>
                                         <td>
                                         @if($item->status=='indeferido')
                                         {{$item->comentario}}
@@ -66,7 +80,6 @@
                                         <td>{{ $item->data_retirada }}</td>
                                         <td>{{ $item->patrimonio }}</td>
                                         <td>{{ $item->motivo }}</td>
-
                                     </tr>
                                 @endforeach
                                 </tbody>

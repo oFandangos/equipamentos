@@ -8,7 +8,7 @@
 
             <div class="col-sm">
                 <div class="card">
-                    <div class="card-header">Análise</div>
+                    <div class="card-header"><h4>Análise de Pedido</h4></div>
                     <div class="card-body">
                         <br />
 

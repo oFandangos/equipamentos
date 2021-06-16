@@ -20,7 +20,7 @@ class EmprestimoController extends Controller
     public function index(Request $request)
     {
         $this->authorize('docente');
-        $emprestimo = Emprestimo::where('status', 'deferido')->get();
+        $emprestimo = Emprestimo::where('status', 'deferido')->paginate(10);
         return view('emprestimo.index', compact('emprestimo'));
     }
 
@@ -28,10 +28,23 @@ class EmprestimoController extends Controller
     {
         $this->authorize('docente');
 
-        if(isset($request->busca)) {
-            $emprestimo = Emprestimo::where('status','=',"{$request->busca}")->paginate(10);
+        /**if ($request->buscastatus != null && $request->busca != null){
+
+            $estagios = Emprestimo::where('patrimonio','LIKE',"%{$request->busca}%")
+            -> where('status', $request->buscastatus)->paginate(10);
+
+        }*/
+
+        if (isset($request->busca)) {
+            $emprestimo = Emprestimo::where('patrimonio','LIKE',"{$request->busca}")->paginate(10);
+
+        } else if(isset($request->buscastatus)) {
+            if ($request->buscastatus != null){
+            $emprestimo = Emprestimo::where('status','=',"{$request->buscastatus}")->paginate(10);
+            }
+            
         }else{
-            $emprestimo = Emprestimo::where('status','!=' , 'deferido')->get();
+            $emprestimo = Emprestimo::paginate(10);
         }
 
 
