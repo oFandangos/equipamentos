@@ -36,7 +36,8 @@
 
                                 <span class="input-group-btn">
 
-                                    <button type="submit" class="btn btn-success"> Filtrar </button>
+                                    <button type="submit" class="btn btn-success" name="fila_action" value="filtro"> Filtrar </button>
+                                    <button type="submit" class="btn btn-success" name="fila_action" value="gerarplanilha"> <i class="far fa-file-excel"></i> Gerar Planilha </button>
 
                                 </span>
                             </div>    
