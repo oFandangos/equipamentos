@@ -8,7 +8,10 @@ use App\Models\Emprestimo;
 use Illuminate\Http\Request;
 use Auth;
 use Workflow;
+use Carbon\Carbon;
 use App\Utils\ReplicadoUtils;
+use Maatwebsite\Excel\Excel;
+use App\Exports\ExcelExport;
 
 class EmprestimoController extends Controller
 {
@@ -24,25 +27,46 @@ class EmprestimoController extends Controller
         return view('emprestimo.index', compact('emprestimo'));
     }
 
-    public function fila(Request $request)
+    public function fila(Request $request, Excel $excel)
     {
         $this->authorize('docente');
 
-        if (isset($request->busca)) {
-            $emprestimo = Emprestimo::where('patrimonio','LIKE',"{$request->busca}")->paginate(10);
-
-        } else if(isset($request->buscastatus)) {
-            if ($request->buscastatus != null){
-            $emprestimo = Emprestimo::where('status','=',"{$request->buscastatus}")->paginate(10);
+        if($request->fila_action == 'filtro') {
+            if (isset($request->busca)) {
+                $emprestimo = Emprestimo::where('patrimonio','LIKE',"{$request->busca}")->paginate(10);
+    
+            } else if(isset($request->buscastatus)) {
+                if ($request->buscastatus != null){
+                $emprestimo = Emprestimo::where('status','=',"{$request->buscastatus}")->paginate(10);
+                }
+                
+            }else{
+                $emprestimo = Emprestimo::paginate(10);
             }
-            
-        }else{
-            $emprestimo = Emprestimo::paginate(10);
+
+            return view('emprestimo.fila', compact('emprestimo'));
         }
 
+        if($request->fila_action == 'gerarplanilha') {
+            $headings = ['Patrimônio','Status','Solicitante','Comentário','Data de Retirada','Motivo','Data de Devolução','Comentário sobre a Devolução'];
+            $campos = ['patrimonio','status','codpes','comentario','data_retirada','motivo','data_devolvido','comentario_devolucao'];
+
+
+            if (isset($request->buscastatus)) {
+                $data = Emprestimo::get($campos)->where('status','=',"{$request->buscastatus}")->toArray();
+            }else{
+                $data = Emprestimo::get($campos)->toArray();
+            }
+
+            $export = new ExcelExport($data,$headings);
+            return $excel->download($export, 'emprestimos.xlsx');
+        }
+
+        $emprestimo = Emprestimo::paginate(10);
 
         return view('emprestimo.fila', compact('emprestimo'));
     }
+
     public function devolver_form(Emprestimo $emprestimo)
     {
         if (Auth::guest()) return redirect('/login');
@@ -63,6 +87,16 @@ class EmprestimoController extends Controller
         $emprestimo->status = 'solicitado_devolucao';
         $emprestimo->update();
         return redirect('/');
+    }
+
+
+    public function devolver_direto(Request $request, Emprestimo $emprestimo)
+    {
+        $this->authorize('logado');
+        $emprestimo->data_devolvido = Carbon::now();
+        $emprestimo->status = 'deferido_devolucao';
+        $emprestimo->update();
+        return redirect('/fila');
     }
 
 

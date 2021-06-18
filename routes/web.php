@@ -18,4 +18,5 @@ Route::resource('emprestimo', EmprestimoController::class);
 Route::get('fila', [EmprestimoController::class, 'fila']);
 
 Route::get('emprestimo/{emprestimo}/devolver', [EmprestimoController::class, 'devolver_form']);
+Route::get('devolver_direto/{emprestimo}', [EmprestimoController::class, 'devolver_direto']);
 Route::patch('devolver/{emprestimo}', [EmprestimoController::class, 'devolver']);

@@ -30,7 +30,8 @@
                                     <tr>
                                         @can('admin')
                                           <td>
-                                            <a href="{{ url('/emprestimo/' . $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-see" aria-hidden="true"></i> Ver</button></a>
+                                            <a href="{{ url('/emprestimo/' . $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-see" aria-hidden="true"></i> Ver</button></a> 
+                                            <a href="{{ url('/devolver_direto/' . $item->id) }}"><button class="btn btn-primary btn-sm" onClick="return confirm('Tem certeza que deseja concluir o deferimento?')"> Devolver Direto</button></a>
                                           </td>
                                         @endcan
                                         <td>
