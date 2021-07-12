@@ -1,5 +1,16 @@
 <?php
 
+$right_menu = [
+    [
+        'text' => '<i class="fas fa-hard-hat"></i>',
+        'title' => 'Logs',
+        'target' => '_blank',
+        'url' => config('app.url') . '/logs',
+        'align' => 'right',
+        'can' => 'admin',
+    ],
+];
+
 return [
     'title'=> 'FFLCH',
     'skin' => env('USP_THEME_SKIN', 'uspdev'),
@@ -22,5 +33,6 @@ return [
             'url'  => '/fila',
             'can'  => 'docente'
         ],
-    ]
+    ],
+    'right_menu' => $right_menu,
 ];
