@@ -126,7 +126,7 @@ class EmprestimoController extends Controller
             'motivo' => 'required',
             'termo' => 'required',
             'patrimonio' => 'multiple_patrimonio',
-            'data_retirada' => 'data'
+            'data_retirada' => 'date_format:d/m/Y'
         ]);
 
         if(is_null($request->patrimonio)){
@@ -135,10 +135,12 @@ class EmprestimoController extends Controller
             $patrimonio = $request->patrimonio;
         }
 
+        dd(Carbon::parse($request->data_retirada)->format('d/m/Y'));
+
         $emprestimo = new Emprestimo;
         $emprestimo->motivo = $request->motivo;
         $emprestimo->patrimonio = $patrimonio;
-        $emprestimo->data_retirada = $request->data_retirada;
+        $emprestimo->data_retirada = Carbon::parse($request->data_retirada)->format('d/m/Y');
         $emprestimo->codpes = Auth::user()->codpes;
         $emprestimo->status = 'solicitado';
         $emprestimo->save();
