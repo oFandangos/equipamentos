@@ -12,7 +12,7 @@
 
 @include('emprestimo.partials.form')
 
-@can('docente')
+@can('admin')
 
   @if($emprestimo->status!='deferido_devolucao')
     @if($emprestimo->status=='solicitado_devolucao')
@@ -50,7 +50,7 @@
     <label for="comentario" class="control-label"><b> Comentário: </b></label>
     <textarea class="form-control" name="comentario">{{ old('comentario',$emprestimo->comentario)}}</textarea>
 </div>
-@endcan('docente')
+@endcan('admin')
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="Enviar">

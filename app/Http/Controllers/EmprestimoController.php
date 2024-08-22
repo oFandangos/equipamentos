@@ -22,14 +22,14 @@ class EmprestimoController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('docente');
+        $this->authorize('admin');
         $emprestimo = Emprestimo::where('status', 'deferido')->paginate(10);
         return view('emprestimo.index', compact('emprestimo'));
     }
 
     public function fila(Request $request, Excel $excel)
     {
-        $this->authorize('docente');
+        $this->authorize('admin');
 
         if($request->fila_action == 'filtro') {
             if (isset($request->busca)) {
@@ -135,12 +135,10 @@ class EmprestimoController extends Controller
             $patrimonio = $request->patrimonio;
         }
 
-        dd(Carbon::parse($request->data_retirada)->format('d/m/Y'));
-
         $emprestimo = new Emprestimo;
         $emprestimo->motivo = $request->motivo;
         $emprestimo->patrimonio = $patrimonio;
-        $emprestimo->data_retirada = Carbon::parse($request->data_retirada)->format('d/m/Y');
+        $emprestimo->data_retirada = Carbon::createFromFormat('d/m/Y',$request->data_retirada)->format('Y-m-d');
         $emprestimo->codpes = Auth::user()->codpes;
         $emprestimo->status = 'solicitado';
         $emprestimo->save();
@@ -159,7 +157,7 @@ class EmprestimoController extends Controller
      */
     public function show(Emprestimo $emprestimo)
     {
-        $this->authorize('docente');
+        $this->authorize('admin');
         return view('emprestimo.show', compact('emprestimo'));
     }
 
@@ -172,7 +170,7 @@ class EmprestimoController extends Controller
      */
     public function edit(Emprestimo $emprestimo)
     {
-        $this->authorize('docente');
+        $this->authorize('admin');
         return view('emprestimo.edit', compact('emprestimo'));
     }
 
@@ -186,15 +184,15 @@ class EmprestimoController extends Controller
      */
     public function update(Request $request, Emprestimo $emprestimo)
     {
-        $this->authorize('docente');
+        $this->authorize('admin');
         $request->validate([
             'analise' => 'required',
             'patrimonio' => 'required', # multiple_patrimonio
-            'data_retirada' => 'required|data'
+            'data_retirada' => 'required|date_format:d/m/Y'
         ]);
 
         $emprestimo->patrimonio = $request->patrimonio;
-        $emprestimo->data_retirada = $request->data_retirada;
+        $emprestimo->data_retirada = Carbon::createFromFormat('d/m/Y',$request->data_retirada)->format('Y-m-d');
         $emprestimo->codpes_autorizador = Auth::user()->codpes;
         $emprestimo->comentario = $request->comentario;
 

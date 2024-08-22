@@ -4,7 +4,7 @@
 @include('flash')
 
 <div class="card">
-  <div class="card-header"><b>Sistema de Empréstimos de Equipamentos FFLCH - COVID-19</b></div>
+  <div class="card-header"><b>Sistema de Empréstimos de Equipamentos FFLCH</b></div>
   <div class="card-body">
   @auth
     @include('emprestimo.replicado',['codpes'=>Auth::user()->codpes])

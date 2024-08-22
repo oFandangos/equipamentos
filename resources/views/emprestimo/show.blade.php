@@ -12,7 +12,7 @@
 
                         @include('emprestimo.replicado',['codpes'=>$emprestimo->codpes])
 
-                        @can('docente')
+                        @can('admin')
                         <a href="{{ url('/emprestimo/' . $emprestimo->id . '/edit') }}" title="Edit Emprestimo"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
                         @endcan
 

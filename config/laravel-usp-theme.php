@@ -26,12 +26,12 @@ return [
         [
             'text' => 'Equipamentos Emprestados',
             'url'  => '/emprestimo',
-             'can'  => 'docente'
+             'can'  => 'admin'
         ],
         [
             'text' => 'Fila de aprovação',
             'url'  => '/fila',
-            'can'  => 'docente'
+            'can'  => 'admin'
         ],
     ],
     'right_menu' => $right_menu,

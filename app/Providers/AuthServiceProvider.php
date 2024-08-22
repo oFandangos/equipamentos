@@ -29,14 +29,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('logado', function ($user) {
             return true;
         });
-        
-        # docente
-        Gate::define('docente', function ($user) {
-            if(ReplicadoUtils::ehdocente($user->codpes)){
-                return true;
-            }
-            $admins = explode(',', trim(getenv('ADMINS')));
-            return ( in_array($user->codpes, $admins) and $user->codpes );
-        });
+
     }
 }

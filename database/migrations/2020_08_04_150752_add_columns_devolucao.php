@@ -14,7 +14,7 @@ class AddColumnsDevolucao extends Migration
     public function up()
     {
         Schema::table('emprestimos', function (Blueprint $table) {
-            $table->date('data_devolvido')->nullable()->default('0000-00-00');
+            $table->date('data_devolvido')->nullable();
             $table->string('codpes_autorizador_devolucao')->nullable();
             $table->string('comentario_devolucao')->nullable();
         });
