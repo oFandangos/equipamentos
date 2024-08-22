@@ -77,12 +77,12 @@ class EmprestimoController extends Controller
 
     public function devolver(Request $request, Emprestimo $emprestimo)
     {
-        $request->validate([
-            'data_devolvido' => 'data'
-        ]);
         $this->authorize('logado');
 
-        $emprestimo->data_devolvido = $request->data_devolvido;
+        $request->validate([
+            'data_devolvido' => 'required|date_format:d/m/Y'
+        ]);
+        $emprestimo->data_devolvido = Carbon::createFromFormat('d/m/Y', $request->data_devolvido)->format('Y-m-d');
 
         $emprestimo->status = 'solicitado_devolucao';
         $emprestimo->update();
